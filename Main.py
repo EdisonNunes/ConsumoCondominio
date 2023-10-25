@@ -4,6 +4,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 import locale
 
+PYTHON_VERSION = 3.10
+from pyecharts import options as opts
+from pyecharts.charts import Line
+from streamlit_echarts import st_pyecharts
+
+
 #st.set_page_config(layout='wide', initial_sidebar_state='expanded')
 st.set_page_config(layout='centered')
 
@@ -70,16 +76,22 @@ for i in y:
 Texto = 'Consumo em ' + fAno
 plt.plot(x , y, label=Texto, marker='*')
 plt.plot(x , Media, label= 'Consumo médio '+ str(z) + Unidade, color='r')
-
 plt.xlabel('Meses do Ano')
 plt.ylabel('Valor consumido em ' + Unidade)
 
 plt.legend()
 plt.grid(True)
-
 st.pyplot(fig, clear_figure=True)
 #
 #    df_lista = dadosUsuario[['MES_STR', 'Consumo']]
 #    df_lista = df_lista.rename(columns={'MES_STR':'MÊS'})
 #    st.dataframe(df_lista, hide_index=True, use_container_width=True, height=460)
 
+#b = (
+#    Line()
+#    .add_xaxis(x)
+#    .add_yaxis(Texto,y)
+#    .add_yaxis(Texto,Media)
+#    .set_global_opts(title_opts=opts.TitleOpts(title="Titulo"))
+#    )
+#st_pyecharts(b)
