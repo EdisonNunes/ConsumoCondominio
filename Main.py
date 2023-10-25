@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import locale
 
-PYTHON_VERSION = 3.10
+
 from pyecharts import options as opts
 from pyecharts.charts import Line
 from streamlit_echarts import st_pyecharts
