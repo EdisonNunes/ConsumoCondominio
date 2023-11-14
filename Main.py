@@ -5,9 +5,9 @@ import numpy as np
 import locale
 
 
-from pyecharts import options as opts
-from pyecharts.charts import Line
-from streamlit_echarts import st_pyecharts
+#from pyecharts import options as opts
+#from pyecharts.charts import Line
+#from streamlit_echarts import st_pyecharts
 
 
 #st.set_page_config(layout='wide', initial_sidebar_state='expanded')
