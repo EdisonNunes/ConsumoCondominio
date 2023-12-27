@@ -86,14 +86,22 @@ y = dadosUsuario['Consumo']
 # Constroe lista com a Média do Ano
 z = int(np.mean(dadosUsuario['Consumo']))
 Media=[]
+Ideal=[]
+ConsumoIdeal= 12 * 36 # 12 m³ por apartamento
 for i in y:
     Media.append(z)
+    Ideal.append(ConsumoIdeal)
 
 ########## Imprime Gráfico
 plt.rc('xtick', labelsize=8)
 
-plt.plot(x , y, label=Texto, marker='*')
-plt.plot(x , Media, label= 'Consumo médio '+ str(z) + Unidade, color='r')
+plt.plot(x, y, label=Texto, marker='*')
+#plt.plot(x, Media, label='Consumo médio ' + str(z) + Unidade, color='r')
+if fEmpresa == 'Sabesp':
+    plt.plot(x, Ideal, label='Consumo ideal mensal' + str(ConsumoIdeal) + Unidade, marker='*')
+else:
+    plt.plot(x, Media, label='Consumo médio ' + str(z) + Unidade, marker='*')
+
 # plt.xlabel('Meses do Ano')
 plt.ylabel('Valor consumido em ' + Unidade)
 
