@@ -98,7 +98,7 @@ plt.rc('xtick', labelsize=8)
 plt.plot(x, y, label=Texto, marker='*')
 #plt.plot(x, Media, label='Consumo médio ' + str(z) + Unidade, color='r')
 if fEmpresa == 'Sabesp':
-    plt.plot(x, Ideal, label='Consumo ideal mensal' + str(ConsumoIdeal) + Unidade, marker='*')
+    plt.plot(x, Ideal, label='Consumo ideal mensal ' + str(ConsumoIdeal) + Unidade, marker='*')
 else:
     plt.plot(x, Media, label='Consumo médio ' + str(z) + Unidade, marker='*')
 
