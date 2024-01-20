@@ -42,7 +42,6 @@ for i in range(0, len(lista_anos_invertida)):
 
 with col1:
     fAno = st.selectbox('ANO/PERÍODO',
-                        # options=df['ANO_NUM'].unique(),
                         options=opcao,
                         index= 0)
     dadosAno = df.loc[(df['Data'] == fAno)]
@@ -67,36 +66,47 @@ with col2:
         Texto = 'Consumo em ' + fAno
 
 
-
-#updateDatas = dadosUsuario['Data'].dt.strftime('%Y/%b')
-#dadosUsuario['Data']= updateDatas[0:]
-
-#updateAno = dadosAno['Data'].dt.strftime('%Y')
-#dadosAno = updateAno[0:]
-
-
-
 fig, ax = plt.subplots()
 
 # Eixo X
-x = dadosUsuario['MES_STR']
+x = list(dadosUsuario['MES_STR'])
 # Eixo Y
-y = dadosUsuario['Consumo']
-
+y = list(dadosUsuario['Consumo'])
 # Constroe lista com a Média do Ano
 z = int(np.mean(dadosUsuario['Consumo']))
 Media=[]
 Ideal=[]
+#Marcadores=[]
 ConsumoIdeal= 12 * 36 # 12 m³ por apartamento
 for i in y:
     Media.append(z)
     Ideal.append(ConsumoIdeal)
+    #Marcadores.append('')
 
 ########## Imprime Gráfico
 plt.rc('xtick', labelsize=8)
+marcadores = np.where(y == np.min(y), '','')
+
+for posicao, marcador in enumerate(marcadores):
+    if marcador == '*':
+        cor = 'red'
+        tamanho = 80
+    else:
+        cor = 'blue'
+        tamanho = 80
+    plt.scatter(x[posicao], y[posicao], marker=marcador, s=tamanho, color=cor)
+    # adicionando uma anotação para mostrar o menor valor em março
+    plt.annotate(y[posicao],
+                 color= cor,
+                 xy=(x[posicao], y[posicao]),
+                 xytext=(-5,5),
+                 fontsize=8,
+                 textcoords='offset points')
+    # print('Posição: ', posicao,'  meses= ',x[posicao],'  vendas= ',y[posicao])
+
 
 plt.plot(x, y, label=Texto, marker='*')
-#plt.plot(x, Media, label='Consumo médio ' + str(z) + Unidade, color='r')
+
 if fEmpresa == 'Sabesp':
     plt.plot(x, Ideal, label='Consumo ideal mensal ' + str(ConsumoIdeal) + Unidade, marker='*')
 else:
@@ -108,16 +118,3 @@ plt.ylabel('Valor consumido em ' + Unidade)
 plt.legend()
 plt.grid(True)
 st.pyplot(fig, clear_figure=True)
-#
-#    df_lista = dadosUsuario[['MES_STR', 'Consumo']]
-#    df_lista = df_lista.rename(columns={'MES_STR':'MÊS'})
-#    st.dataframe(df_lista, hide_index=True, use_container_width=True, height=460)
-
-#b = (
-#    Line()
-#    .add_xaxis(x)
-#    .add_yaxis(Texto,y)
-#    .add_yaxis(Texto,Media)
-#    .set_global_opts(title_opts=opts.TitleOpts(title="Titulo"))
-#    )
-#st_pyecharts(b)
