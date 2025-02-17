@@ -108,8 +108,8 @@ for posicao, marcador in enumerate(marcadores):
 plt.plot(x, y, label=Texto, marker='*')
 
 if fEmpresa == 'Sabesp':
-    plt.plot(x, Ideal, label='Consumo ideal mensal ' + str(ConsumoIdeal) + Unidade, marker='*')
     plt.plot(x, Media, label='Média no período ' + str(z) + Unidade, marker='*')
+    plt.plot(x, Ideal, label='Consumo ideal mensal ' + str(ConsumoIdeal) + Unidade, marker='*')
 else:
     plt.plot(x, Media, label='Consumo médio ' + str(z) + Unidade, marker='*')
 
