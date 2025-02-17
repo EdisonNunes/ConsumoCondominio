@@ -10,7 +10,6 @@ import locale
 #from pyecharts.charts import Line
 #from streamlit_echarts import st_pyecharts
 
-
 #st.set_page_config(layout='wide', initial_sidebar_state='expanded')
 st.set_page_config(layout='centered')
 
@@ -82,7 +81,8 @@ for i in y:
     Media.append(z)
     Ideal.append(ConsumoIdeal)
     #Marcadores.append('')
-
+#print(Media)
+#print(Ideal)
 ########## Imprime Gráfico
 plt.rc('xtick', labelsize=8)
 marcadores = np.where(y == np.min(y), '','')
@@ -109,6 +109,7 @@ plt.plot(x, y, label=Texto, marker='*')
 
 if fEmpresa == 'Sabesp':
     plt.plot(x, Ideal, label='Consumo ideal mensal ' + str(ConsumoIdeal) + Unidade, marker='*')
+    plt.plot(x, Media, label='Média no período ' + str(z) + Unidade, marker='*')
 else:
     plt.plot(x, Media, label='Consumo médio ' + str(z) + Unidade, marker='*')
 
